@@ -22,11 +22,20 @@ Here are the following classes and a brief summary of what they do:
 
 To run the project,
 Instructions:
-
-1. Open Eclipse
-2. Click File -> Import
-3. General -> Projects from Folder or Archive
-4. To the right of import source, select Archive
-5. select the .zip file
-6. click Finish
-7. Run
+- TO RUN IN ECLIPSE:
+	1. Open Eclipse
+	2. Click File -> Import
+	3. General -> Projects from Folder or Archive
+	4. To the right of import source, select Archive
+	5. select the .zip file
+	6. click Finish
+	7. Run
+	
+- TO RUN IN LINUX COMMAND:
+	1. extract the zip file
+	2. cd ... to the root folder core-nlp-text-processing
+	3. make sure you have installed maven
+	3. type the following commands:
+		i. mvn clean install
+		ii. mvn package
+		iii. mvn exec:java
