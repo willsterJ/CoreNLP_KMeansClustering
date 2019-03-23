@@ -1,0 +1,44 @@
+ rate 68
+ mortgage 64
+ bank 60
+ loan 50
+ airline 36
+ safety 27
+ percent 24
+ part 22
+ case 21
+ pilot 20
+ mortgage rate 20
+ million_yen 19
+ time 18
+ mouth 18
+ EAT 17
+ order 17
+ cent 17
+ government 16
+ question 16
+ approx 15
+ standard 15
+ hoof mouth 15
+ hoof 15
+ house 15
+ aircraft 14
+ company 13
+ investigation 12
+ flight 12
+ animal 12
+ state 12
+ force 11
+ source 11
+ million_yen approx 11
+ inspection 11
+ measure 11
+ CAP 10
+ agriculture 10
+ jet 10
+ problem 10
+ aviation 10
+ sheep 10
+ companie 10
+ special 10
+ corporation 10
