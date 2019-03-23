@@ -18,7 +18,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 				<configuration>
-					<mainClass>Default.java</mainClass>
+					<mainClass>src/main/java/Default.java</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
