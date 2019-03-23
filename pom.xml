@@ -6,6 +6,10 @@
 	<artifactId>core-nlp-text-processing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -37,12 +41,12 @@
 			<version>1.0.19</version>
 		</dependency>
 
-         <dependency>
-             <groupId>org.apache.commons</groupId>
-             <artifactId>commons-math3</artifactId>
-             <version>3.6.1</version>
-             <type>jar</type>
-         </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
+			<type>jar</type>
+		</dependency>
 
 	</dependencies>
 
