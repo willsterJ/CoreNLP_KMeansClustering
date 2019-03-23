@@ -42,7 +42,7 @@ public class Default {
 
 		
 		
-	    SwingUtilities.invokeLater(() -> {
+	    //SwingUtilities.invokeLater(() -> {
 	    	
 	    	Visualization plot1 = new Visualization("Euclidean Scatter Chart", PCAMatrix,k,euclideanClusterNames);
 	    	plot1.setSize(1000, 1000);
@@ -56,7 +56,7 @@ public class Default {
 	    	plot2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	    	plot2.setVisible(true);
 	    	
-	      });
+	     // });
 	      
 	}
 
