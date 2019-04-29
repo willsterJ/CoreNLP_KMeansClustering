@@ -20,6 +20,12 @@ public class ConfusionMatrix_Evaluation {
 		HashMap<String, List<String>> actualDocsHash = rangeFinder.documentIndexHash;
 		generateConfusionMatrix(k, actualDocsHash, similarity);
 	}
+	
+	// overloaded constructor that takes in 2 lists. Used in the KNN algorithm
+	public ConfusionMatrix_Evaluation(int k, List<String> actualPointsNames, List<String> predictedPointsNames) {
+		compareActualandPredicted(actualPointsNames, predictedPointsNames);
+
+	}
 
 	private void generateConfusionMatrix(int k, HashMap<String, List<String>> actualDocsHash, String similarity) {
 		// convert actualDocsHash into an arraylist of actual clusters
@@ -31,7 +37,7 @@ public class ConfusionMatrix_Evaluation {
 		convert_predictedDataPoints_to_List(k, predictedPoints);
 		// compare cluster name between actual and predicted points and calculate F1
 		// Score
-		compareActualandPredicted();
+		compareActualandPredicted(actualPointsNames, predictedPointsNames);
 
 		printResult(similarity);
 	}
@@ -59,7 +65,7 @@ public class ConfusionMatrix_Evaluation {
 		actualPointsNames = actualClusterList;
 	}
 
-	// method to convert predicted points to folder name. It achieves this by
+	// method to convert predicted points to folder name. It achieves this by assigning cluster index with the cluster that has the most count
 	private void convert_predictedDataPoints_to_List(int k, DataPoint[] predictedPoints) {
 		int actualIndexCount = 0;
 		// key = [0...k], value = C1,C4, or C7
@@ -139,7 +145,7 @@ public class ConfusionMatrix_Evaluation {
 
 	// method to find TruePositives, FalseNegatives, FalsePositives, and
 	// TrueNegatives
-	private void compareActualandPredicted() {
+	private void compareActualandPredicted(List<String> actualPointsNames, List<String>predictedPointsNames) {
 		// prepare the confusion matrix with actual rows (C1, C4, C7) and predicted
 		// column (C1 C4 C7)
 		// use hashmap to count the occurrences
@@ -240,7 +246,7 @@ public class ConfusionMatrix_Evaluation {
 	}
 
 	// method to print out the confusion matrix
-	private void printResult(String similarity) {
+	public void printResult(String similarity) {
 		// System.out.println("\t\t Predicted NO" + " Predicted YES");
 		// System.out.print("Actual NO" + "\t\t" + TrueNegative + "\t\t" + FalsePositive
 		// + "\n");

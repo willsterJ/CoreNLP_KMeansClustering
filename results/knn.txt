@@ -1,0 +1,15 @@
+----------------KNN RESULTS---------------
+
+predicted categories:
+./data_unknowns/unknown01.txt: C1
+./data_unknowns/unknown02.txt: C1
+./data_unknowns/unknown03.txt: C4
+./data_unknowns/unknown04.txt: C1
+./data_unknowns/unknown05.txt: C4
+./data_unknowns/unknown06.txt: C4
+./data_unknowns/unknown07.txt: C7
+./data_unknowns/unknown08.txt: C7
+./data_unknowns/unknown09.txt: C4
+./data_unknowns/unknown10.txt: C4
+
+accuracy: 0.8666666666666667

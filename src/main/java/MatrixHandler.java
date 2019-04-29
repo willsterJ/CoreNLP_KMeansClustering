@@ -7,14 +7,15 @@ import org.apache.commons.math3.linear.*;
 public class MatrixHandler {
 	private List<HashMap<String, Integer>> documentTopics; // list that stores topics for each document
 	private List<String> datasetTopics; // list that stores entire data set topics
-
+	
 	public static int[][] matrix; // document-term matrix
 	public static double[][] tf_idfMatrix;	// tf-idf matrix
 	public static double[][] PCAMatrix;
+	public static double[] idf_array;
 
 	// constructor with input = n-gram-level, generate matrix
-	public MatrixHandler(int ngram_level, int relevancy_Cutoff) {
-		documentTopics = read_NLP_WriteTopics(ngram_level, relevancy_Cutoff); // list to store topics of each document
+	public MatrixHandler(int ngram_level, int relevancy_Cutoff, String source, boolean updateStaticNGram) {
+		documentTopics = read_NLP_WriteTopics(ngram_level, relevancy_Cutoff, source, updateStaticNGram); // list to store topics of each document
 		// read ngramTopic.txt and get list of topics
 		datasetTopics = readListTopics();
 		matrix = generateMatrix(datasetTopics, documentTopics);
@@ -25,6 +26,7 @@ public class MatrixHandler {
 		tf_idfMatrix = performtTf_idf(matrix);
 	}
 	
+	// overloaded constructor that converts matrix to PCA matrix
 	public MatrixHandler(double[][] matrix, String command) {
 		if (command.equals("applyPCA")) {
 			PCAMatrix = applyPCA(matrix);
@@ -33,8 +35,8 @@ public class MatrixHandler {
 
 	// method that reads input files, apply NLP, and write the topics on a file
 	// ngramTopics.txt
-	public static List<HashMap<String, Integer>> read_NLP_WriteTopics(int n, int relevancy_Cutoff) {
-		String dataDirectory = "./data"; // starting directory data folder
+	public static List<HashMap<String, Integer>> read_NLP_WriteTopics(int n, int relevancy_Cutoff, String source, boolean writeToTopics) {
+		String dataDirectory = source; // starting directory data folder
 		FileHandler inputFiles = new FileHandler(dataDirectory, "readFiles"); // scours the folder to find all files
 		List<String> fileNames = inputFiles.getFileNameList(); // get the file paths and store in arraylist
 
@@ -44,19 +46,20 @@ public class MatrixHandler {
 		List<HashMap<String, Integer>> documentTopics = new ArrayList<HashMap<String, Integer>>();
 		for (String file : fileNames) {
 			nlphandler = new CoreNLPHandler(file); // call CoreNLPHandler
-			NGram ngram = new NGram(n, nlphandler.getOutputList()); // generate nGram
+			NGram ngram = new NGram(n, nlphandler.getOutputList(), writeToTopics); // generate nGram
 			ngram.setDocumentHash(ngram.sortByValue(ngram.getDocumentHash())); // sort the local hashmap
 			HashMap<String, Integer> localHash = ngram.getDocumentHash();
 			documentTopics.add(localHash); // add local hashmap to Topics arrayList
 		}
 		NGram.eliminateByValueLessThan(relevancy_Cutoff); // eliminate topics with low frequency from entire dataset
 		NGram.sortAllByValue(); // sort the hash map of entire dataset
-		NGram.printTopics();
+		//NGram.printTopics();
 
 		FileHandler writeTopics = new FileHandler(NGram.hashTable, "topics.txt"); // write entire dataset topics to file
 
 		return documentTopics;
 	}
+	
 
 	// method to read ngram topics file and return the array list of topics sorted
 	public static ArrayList<String> readListTopics() {
@@ -97,6 +100,7 @@ public class MatrixHandler {
 
 		// count occurrence in all documents per word.
 		double[] inverseDocumentFrequency = new double[matrix[0].length];
+		idf_array = new double[matrix[0].length];
 		for (int j = 0; j < matrix[0].length; j++) {
 			int appearance = 0;
 			for (int i = 0; i < matrix.length; i++) {
@@ -105,6 +109,7 @@ public class MatrixHandler {
 				}
 			}
 			inverseDocumentFrequency[j] = (double) Math.log(matrix.length / appearance);
+			idf_array[j] = inverseDocumentFrequency[j]; // copy idf array. To be used in KNN_Algorithm
 		}
 
 		// copy matrix to tf_idfMatrix

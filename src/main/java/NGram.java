@@ -13,9 +13,10 @@ public class NGram {
 	public static HashMap<String, Integer> hashTable = new HashMap<String, Integer>();
 	private HashMap<String, Integer> documentHash; // local hash for each document
 
-	public NGram(int n, ArrayList<String> inputlist) {
+	public NGram(int n, ArrayList<String> inputlist, boolean writeToTopics) {
 		this.documentHash = new HashMap<String, Integer>();
-		generateMap(n, inputlist, hashTable);
+		if (writeToTopics == true)
+			generateMap(n, inputlist, hashTable);
 		generateMap(n, inputlist, documentHash);
 	}
 

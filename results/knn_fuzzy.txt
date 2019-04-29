@@ -1,0 +1,13 @@
+------------FUZZY KNN--------------
+
+fuzzy predicted values:
+./data_unknowns/unknown01.txt: 33.33% C7, 66.67% C1, 
+./data_unknowns/unknown02.txt: 33.33% C4, 66.67% C1, 
+./data_unknowns/unknown03.txt: 66.67% C4, 33.33% C1, 
+./data_unknowns/unknown04.txt: 100.00% C1, 
+./data_unknowns/unknown05.txt: 100.00% C4, 
+./data_unknowns/unknown06.txt: 66.67% C4, 33.33% C7, 
+./data_unknowns/unknown07.txt: 100.00% C7, 
+./data_unknowns/unknown08.txt: 100.00% C7, 
+./data_unknowns/unknown09.txt: 66.67% C4, 33.33% C1, 
+./data_unknowns/unknown10.txt: 66.67% C4, 33.33% C1, 
